@@ -43,6 +43,22 @@ module hinge_n(p,d,l,w,h,j=0.2, n=1, base_h=0) {
 	}
 }
 
+module hinge_join(p,d,l,w,h,j=0,base_h=0, n1=2, n2=3, ecart=0, angle=0, cutf=1.2)
+{
+    translate([0,-ecart,0]) rotate([-angle/2,0,0]) difference()
+    {
+      hinge_n(p,d,l,w,h,j,n1, base_h);
+      translate([0,(ecart+l-p)/2,0]) rotate([0,90,0])
+        cylinder(d=h*cutf, h=(n1+j)*2*w, center=true);
+    }
+    translate([0,ecart,0]) rotate([-angle/2,0,180])  difference()
+    {
+      hinge_n(p,d,l,w,h,j,n2, base_h);
+      translate([0,(ecart+l-p)/2,0]) rotate([0,90,0])
+        cylinder(d=h*cutf, h=(n2+j)*2*w, center=true);
+    }
+}
+
 module hinge_lock(hd,hl,e,j=0.2, endlock=true) {
     cylinder(d=hd-j, h=hl, center=true);
     translate([-e,0,hl/2]) rotate([90,0,0]) rotate_extrude(angle=180)
