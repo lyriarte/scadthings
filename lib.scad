@@ -146,3 +146,19 @@ module sphere_hinge_hold(d,e,j,d1,a1,d2,a2,hp,hd,hl,hw,hh,hn=3,ah=0,av=0) {
 				hinge_n(hp,hd,hl,hw,hh, n=hn, base_h=e*1.5);
 }
 
+
+module stepper_tool(d=6, h=10, j=0) {
+	translate([0,0,-h]) difference() {
+		cylinder(d=d, h=h, $fn=60);
+		translate([0,0,h-9])
+			intersection() {
+				cylinder(d=5.5+j, h=10, $fn=15);
+				translate([0, 0, (h+2)/2]) 
+					cube([3+j, 10, 12], center=true);
+			}
+		translate([0, 0, h-3])
+			rotate([90, 0, 90])
+				cylinder(d=3, h=d*1.1, $fn=15, center=true);
+	}
+}
+
