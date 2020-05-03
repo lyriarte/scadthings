@@ -162,3 +162,13 @@ module stepper_tool(d=6, h=10, j=0) {
 	}
 }
 
+module stepper_tool_base(d=6, h=10, j=0, base_d=12, base_h=3) {
+	stepper_tool(d, h, j);
+	translate([0,0,base_h/2]) difference() {
+		cylinder(d=base_d, h=base_h, center=true, $fn=60);
+		cylinder(d=5.5+j, h=base_h+3, center=true, $fn=60);
+		translate([0,0,1])
+			cylinder(d=10+j, h=base_h-1, center=true, $fn=60);
+	}
+}
+
