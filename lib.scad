@@ -28,6 +28,21 @@ module hang(l1,l2,l3,w,t) {
     translate([0,-l2/2+t/2,-l3/2]) rotate([90,0,0]) cube([w,l3,t], center=true);
 }
 
+module hook(hd,hl,e,a=180,s=true) {
+    cylinder(d=hd, h=hl, $fn=15);
+    translate([0,-e,0])
+	rotate([270,0,0]) rotate([0,90,0])
+	    rotate_extrude(angle=a)
+		translate([e, 0, 0]) 
+		    circle(d=hd, $fn=15);
+    if (s) {
+	translate([0,0,hl])
+	    sphere(d=hd);
+	translate([0,-e*2,0])
+	    sphere(d=hd);
+    }
+}
+
 module hinge_unit(p,d,l,w,h) {
     difference() {
         intersection() {
