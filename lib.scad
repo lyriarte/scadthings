@@ -119,6 +119,12 @@ module tube_lock(hinge_p, hinge_d, hinge_l, hinge_w, hinge_h, grip_l, grip_d, n=
     }
 }
 
+module cylinder_groove_lock(d1,h1,d2,h2) {
+    cylinder(d=d2,h=h2, $fn=30);
+    translate([0,0,h2*0.95])
+	cylinder(d=d1,h=h1, $fn=30);
+}
+
 module sphere_hold(d,e,j,d1,a1,d2,a2) {
     difference() {
         sphere(d=d+e);
