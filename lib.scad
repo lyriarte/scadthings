@@ -22,6 +22,12 @@ module wedge(l,w,h1,h2) {
     }
 }
 
+module hang(l1,l2,l3,w,t) {
+    translate([0,l2/2-t/2,-l1/2]) rotate([90,0,0]) cube([w,l1,t], center=true);
+    cube([w,l2,t], center=true);
+    translate([0,-l2/2+t/2,-l3/2]) rotate([90,0,0]) cube([w,l3,t], center=true);
+}
+
 module hinge_unit(p,d,l,w,h) {
     difference() {
         intersection() {
