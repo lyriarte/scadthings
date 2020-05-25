@@ -43,6 +43,20 @@ module hook(hd,hl,e,a=180,s=true) {
     }
 }
 
+module rope_lock(l, h, di1, do1, di2, do2) {
+	difference() {
+		hull() {
+			cylinder(d=do1, h=h);
+			translate([l-(do1+do2)/2,0,0])
+				cylinder(d=do2, h=h);
+		}
+	translate([0,0,-0.5])
+		cylinder(d=di1, h=h+1);
+	translate([l-(do1+do2)/2,0,-0.5])
+		cylinder(d=di2, h=h+1);
+	}
+}
+
 module hinge_unit(p,d,l,w,h) {
     difference() {
         intersection() {
