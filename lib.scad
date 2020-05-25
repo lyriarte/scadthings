@@ -57,6 +57,14 @@ module rope_lock(l, h, di1, do1, di2, do2) {
 	}
 }
 
+module rope_hook(l, h, di1, do1, di2, do2, a=30) {
+	difference() {
+		rope_lock(l, h, di1, do1, di2, do2);
+		rotate([0,0,a]) translate([l/2,0,h/2])
+			cube([l,di1/2,h+1], center=true);
+	}
+}
+
 module hinge_unit(p,d,l,w,h) {
     difference() {
         intersection() {
