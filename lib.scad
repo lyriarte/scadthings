@@ -74,7 +74,7 @@ module hinge_unit(p,d,l,w,h) {
                 translate([-l/2,-w,-h/2]) cube([l/2+p,w*2,h]);
             }
         }
-        translate([p,0,0]) rotate([90,0,0]) cylinder(d=d,h=2*w, center=true);
+        translate([p,0,0]) rotate([90,0,0]) cylinder(d=d,h=2*w, center=true, $fn=15);
     }
 }
 
@@ -103,14 +103,14 @@ module hinge_join(p,d,l,w,h,j=0,base_h=0, n1=2, n2=3, ecart=0, angle=0, cutf=1.2
 }
 
 module hinge_lock(hd,hl,e,j=0.2, endlock=true) {
-    cylinder(d=hd-j, h=hl, center=true);
-    translate([-e,0,hl/2]) rotate([90,0,0]) rotate_extrude(angle=180)
+    cylinder(d=hd-j, h=hl, center=true, $fn=15);
+    translate([-e,0,hl/2]) rotate([90,0,0]) rotate_extrude(angle=180, $fn=15)
        translate([e, 0, 0]) circle(d=hd-j);
-    translate([-2*e,0,0]) rotate([0,0,0]) cylinder(d=hd-j, h=hl, center=true);
-    translate([-e,0,-hl/2]) rotate([90,0,0]) rotate_extrude(angle=90)
+    translate([-2*e,0,0]) rotate([0,0,0]) cylinder(d=hd-j, h=hl, center=true, $fn=15);
+    translate([-e,0,-hl/2]) rotate([90,0,0]) rotate_extrude(angle=90, $fn=15)
        translate([-e, 0, 0]) circle(d=hd-j);
 	if (endlock) {
-		translate([-e/2,0,-hl/2-hd]) rotate([0,90,0]) cylinder(d=hd-j, h=hl/4, center=true);
+		translate([-e/2,0,-hl/2-hd]) rotate([0,90,0]) cylinder(d=hd-j, h=hl/4, center=true, $fn=15);
 	}
 }
 
