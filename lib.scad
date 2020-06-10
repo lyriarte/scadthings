@@ -221,3 +221,25 @@ module stepper_tool_base(d=6, h=10, j=0, base_d=12, base_h=3) {
 	}
 }
 
+module wheel(d, h, n_hole, n_grip) {
+    difference() {
+        union() {
+            for(i = [0:n_grip]) {
+                rotate([0, 0, i * 360 / n_grip])
+                translate([d / 2, 0, 0])
+        			cylinder(d=360/(3*n_grip), h=h, $fn=9, center=true);
+            }
+            cylinder(d=d, h=h, $fn=120, center=true);
+        }
+        for(i = [0:n_hole]) {
+            rotate([0, 0, i*360/n_hole]) hull() {
+                translate([d/6, 0, 0])
+                cylinder(d=d/(n_hole+1), h=h*1.1, $fn=30, center=true);
+                translate([d/2.2 - d/(n_hole+1), 0, 0])
+                cylinder(d=d*2/(n_hole+1), h=h*1.1, $fn=30, center=true);
+            }
+        }
+    }
+}
+
+
