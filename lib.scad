@@ -221,7 +221,7 @@ module stepper_tool_base(d=6, h=10, j=0, base_d=12, base_h=3) {
 	}
 }
 
-module wheel(d, h, n_hole, n_grip) {
+module wheel(d, h, n_hole, n_grip=0, groove_d=0) {
     difference() {
         union() {
             for(i = [0:n_grip]) {
@@ -231,6 +231,9 @@ module wheel(d, h, n_hole, n_grip) {
             }
             cylinder(d=d, h=h, $fn=120, center=true);
         }
+	    rotate_extrude(angle=360)
+			translate([d/2, 0, 0]) 
+#				circle(d=groove_d, $fn=4);
         for(i = [0:n_hole]) {
             rotate([0, 0, i*360/n_hole]) hull() {
                 translate([d/6, 0, 0])
