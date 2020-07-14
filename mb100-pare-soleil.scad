@@ -9,7 +9,7 @@ tube_d2=7.5;
 hold_w=14;
 hold_l=60;
 hold_t=6;
-hold_angle=25;
+hold_angle=30;
 hold_port=30;
 
 
@@ -25,8 +25,8 @@ module hold_fixe() {
 difference() {
 	union() {
 		cylinder(d=tube_d, h=tube_h, $fn=30);
-		translate([0,-hold_w/2,tube_h/2]) rotate([0,270,0])
-			hull_box(tube_h,hold_w,hold_t,1, center=false);
+		translate([hold_t,-hold_w/2,tube_h/2]) rotate([0,270,0])
+			hull_box(tube_h,hold_w,hold_t*2,1, center=false);
 		translate([0,-hold_w/2,tube_h*3/2-2]) rotate([0,270-hold_angle,0])
 			hull_box(hold_l,hold_w,hold_t,1, center=false);
 		 rotate([0,-hold_angle,0]) translate([1,-hold_w/2,hold_l+tube_h*3/2-hold_w/2]) union() {
