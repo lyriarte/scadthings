@@ -13,6 +13,31 @@ module hull_box(l,w,h,c, center=true)
     }
 }
 
+module soap_box(l,w,h,t,nl,nw,r) {
+	difference() {
+        union() {
+            hull_box(l,w,h,8, center=true);
+            translate([-(l/2-r*1.5),-(w/2-r*1.5),-h+r*2/3])
+                sphere(r=r*2/3, $fn=30);
+            translate([ (l/2-r*1.5),-(w/2-r*1.5),-h+r*2/3])
+                sphere(r=r*2/3, $fn=30);
+            translate([-(l/2-r*1.5), (w/2-r*1.5),-h+r*2/3])
+                sphere(r=r*2/3, $fn=30);
+            translate([ (l/2-r*1.5), (w/2-r*1.5),-h+r*2/3])
+                sphere(r=r*2/3, $fn=30);
+        }
+		translate([0,0,t]) 
+            hull_box(l-t*2,w-t*2,h+t,8, center=true);
+        translate([-l/2,-w/2,-h/2])
+        for(i = [1:nl-1]) {
+            for(j = [1:nw-1]) {
+                translate([i*l/nl,j*w/nw,r*0.8])
+                    sphere(r=r, $fn=30);
+            }
+        }
+	}
+}
+
 module wedge(l,w,h1,h2) {
     hull() {
         translate([0,(l-h1)/2,0])
