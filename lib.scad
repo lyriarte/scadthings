@@ -142,13 +142,13 @@ module hinge_lock(hd,hl,e,j=0.2, endlock=true) {
 module grip(l, d, f=1.2, t=0.5, dg=0, dh=1, dfl=1, center=true) {
     difference() {
         hull() {
-            cylinder(h=l, d=d*f, center=center);
+            cylinder(h=l, d=d*f, center=center, $fn=30);
             if (dg != 0) {
                 translate([dg + (t>0 ? 1 : -1) * (center ? d/2 : 0), 0, 0])
 #                    cylinder(h=l*dfl, d=dh, center=center);
             }
         }
-        cylinder(h=l*1.1, d=d, center=center);
+        cylinder(h=l*1.1, d=d, center=center, $fn=30);
         translate([d*f*t, 0, 0])
             cube([d*f,d*f,l*1.1], center=center);
     }
@@ -159,9 +159,9 @@ module angle_hold(a,r,l,t,d, f=1.2, dt=0.67, fl=1, dg=0, dh=1, dfl=1) {
         rotate_extrude(angle=a)
             translate([r, 0, 0]) square([l,t], center=true);
         rotate([90,0,90-0.5])
-            translate([0,0,r]) cylinder(h=l*f, d=d*f, center=true);
+            translate([0,0,r]) cylinder(h=l*f, d=d*f, center=true, $fn=30);
         rotate([90,0,90+a+0.5])
-            translate([0,0,r]) cylinder(h=l*f, d=d*f, center=true);
+            translate([0,0,r]) cylinder(h=l*f, d=d*f, center=true, $fn=30);
     }
     rotate([90,0,90])
         translate([0,0,r*0.995]) grip(l=l*fl, d=d, f=f, t=-dt, dg=dg, dh=dh, dfl=dfl);
