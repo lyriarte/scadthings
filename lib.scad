@@ -250,7 +250,7 @@ module molette(d, h, d_grip, n_grip=3) {
 		for(i = [0:n_grip]){
 			rotate([0, 0, i * 360 / n_grip])
 			translate([d_molette / 2, 0, 0])
-				cylinder(d=d_grip, h=h);
+				cylinder(d=d_grip, h=h, $fn=30);
 		}
 	}
 }
