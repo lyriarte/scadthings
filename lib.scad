@@ -245,4 +245,14 @@ module wheel(d, h, n_hole, n_grip=0, groove_d=0) {
     }
 }
 
+module molette(d, h, d_grip, n_grip=3) {
+	hull() {
+		for(i = [0:n_grip]){
+			rotate([0, 0, i * 360 / n_grip])
+			translate([d_molette / 2, 0, 0])
+				cylinder(d=d_grip, h=h);
+		}
+	}
+}
+
 
