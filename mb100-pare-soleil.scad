@@ -55,7 +55,7 @@ module hold_mobile() {
 	translate([hinge_w+hinge_j,hinge_l/2,0]) union() {
 		hull_box((hinge_w+hinge_j)*5,hold_t,hold_w*1.2,1, center=true);
 		rotate([180,0,0]) translate([hinge_w*2,-3,-1.2*hold_w/2])
-			hull_box(hold_t,hinge_l+hold_l,hold_w*1.2,1, center=false);
+			hull_box(hold_t,hinge_l+hold_l*1.5,hold_w*1.2,1, center=false);
 	}
   }
   translate([0,-portee,0]) rotate([0,90,0])
