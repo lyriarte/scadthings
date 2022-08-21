@@ -49,12 +49,18 @@ difference() {
 }
 
 module hold_mobile() {
+ difference() {
+  union() {
 	hinge_n(portee,vis,hinge_l,hinge_w,hinge_h,j=hinge_j,n=2);
 	translate([hinge_w+hinge_j,hinge_l/2,0]) union() {
 		hull_box((hinge_w+hinge_j)*5,hold_t,hold_w,1, center=true);
 		rotate([180,0,0]) translate([hinge_w*2,-3,-hold_w/2])
 			hull_box(hold_t,hinge_l+hold_l,hold_w,1, center=false);
 	}
+  }
+  translate([0,-portee,0]) rotate([0,90,0])
+    cylinder(d=vis+hinge_j, h=12*hinge_w, center=true,$fn=15);
+ }
 }
 
 rotate([90,0,0]) hold_fixe();
