@@ -42,8 +42,8 @@ difference() {
         cylinder(d=tube_d1, h=tube_h+2, $fn=15);
     translate([0,0,tube_h1])
         cylinder(d=tube_d2, h=hold_l/2, $fn=15);
-%    translate([hold_t-0.5,0,tube_h+hold_w/2]) rotate([90,340,0])
-		scale([1,1.5,1])
+%    translate([hold_t-3,0,tube_h+2+hold_w/2]) rotate([90,340,0])
+		scale([1,2,1])
 #        cylinder(d=tube_d, h=hold_w*1.1, $fn=15, center=true);
 }
 }
