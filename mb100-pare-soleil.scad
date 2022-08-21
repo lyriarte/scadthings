@@ -42,9 +42,9 @@ difference() {
         cylinder(d=tube_d1, h=tube_h+2, $fn=15);
     translate([0,0,tube_h1])
         cylinder(d=tube_d2, h=hold_l/2, $fn=15);
-%    translate([hold_t-3,0,tube_h+2+hold_w/2]) rotate([90,340,0])
+    translate([hold_t-3,0,tube_h+2+hold_w/2]) rotate([90,340,0])
 		scale([1,2,1])
-#        cylinder(d=tube_d, h=hold_w*1.1, $fn=15, center=true);
+        cylinder(d=tube_d, h=hold_w*1.1, $fn=15, center=true);
 }
 }
 
@@ -63,7 +63,7 @@ module hold_mobile() {
  }
 }
 
-rotate([90,0,0]) hold_fixe();
+%rotate([90,0,0]) hold_fixe();
 
-%translate([-4,-52,0]) rotate([180,0,-hold_angle]) translate([0,45,0]) 
+translate([-4,-52,0]) rotate([180,0,-hold_angle]) translate([0,45,0]) 
 hold_mobile();
