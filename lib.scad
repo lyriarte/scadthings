@@ -1,3 +1,12 @@
+module hull_polygon(l, c=1) {
+    hull() {
+        for (i=[0:len(l)-1]) {
+            translate([l[i][0],l[i][1],0])
+                circle(r=c);
+        }
+    }
+}
+
 module hull_box(l,w,h,c, center=true)
 {	
     translate([center ? 0 : l/2, center ? 0 : w/2, center ? 0 : h/2]) 
