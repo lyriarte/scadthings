@@ -2,7 +2,7 @@ module hull_polygon(l, c=1) {
     hull() {
         for (i=[0:len(l)-1]) {
             translate([l[i][0],l[i][1],0])
-                circle(r=c);
+                circle(r=c, $fn=30);
         }
     }
 }
@@ -11,14 +11,14 @@ module hull_box(l,w,h,c, center=true)
 {	
     translate([center ? 0 : l/2, center ? 0 : w/2, center ? 0 : h/2]) 
 	hull() {
-        translate([-l/2+c, -w/2+c, -h/2+c]) sphere(r=c);
-        translate([ l/2-c, -w/2+c, -h/2+c]) sphere(r=c);
-        translate([ l/2-c,  w/2-c, -h/2+c]) sphere(r=c);
-        translate([-l/2+c,  w/2-c, -h/2+c]) sphere(r=c);
-        translate([-l/2+c, -w/2+c,  h/2-c]) sphere(r=c);
-        translate([ l/2-c, -w/2+c,  h/2-c]) sphere(r=c);
-        translate([ l/2-c,  w/2-c,  h/2-c]) sphere(r=c);
-        translate([-l/2+c,  w/2-c,  h/2-c]) sphere(r=c);
+        translate([-l/2+c, -w/2+c, -h/2+c]) sphere(r=c, $fn=30);
+        translate([ l/2-c, -w/2+c, -h/2+c]) sphere(r=c, $fn=30);
+        translate([ l/2-c,  w/2-c, -h/2+c]) sphere(r=c, $fn=30);
+        translate([-l/2+c,  w/2-c, -h/2+c]) sphere(r=c, $fn=30);
+        translate([-l/2+c, -w/2+c,  h/2-c]) sphere(r=c, $fn=30);
+        translate([ l/2-c, -w/2+c,  h/2-c]) sphere(r=c, $fn=30);
+        translate([ l/2-c,  w/2-c,  h/2-c]) sphere(r=c, $fn=30);
+        translate([-l/2+c,  w/2-c,  h/2-c]) sphere(r=c, $fn=30);
     }
 }
 
@@ -63,12 +63,12 @@ module hang(l1,l2,l3,w,t) {
 }
 
 module hook(hd,hl,e,a=180,s=true) {
-    cylinder(d=hd, h=hl, $fn=15);
+    cylinder(d=hd, h=hl, $fn=30);
     translate([0,-e,0])
 	rotate([270,0,0]) rotate([0,90,0])
 	    rotate_extrude(angle=a)
 		translate([e, 0, 0]) 
-		    circle(d=hd, $fn=15);
+		    circle(d=hd, $fn=30);
     if (s) {
 	translate([0,0,hl])
 	    sphere(d=hd);
@@ -115,7 +115,7 @@ module hinge_unit(p,d,l,w,h) {
                 translate([-l/2,-w,-h/2]) cube([l/2+p,w*2,h]);
             }
         }
-        translate([p,0,0]) rotate([90,0,0]) cylinder(d=d,h=2*w, center=true, $fn=15);
+        translate([p,0,0]) rotate([90,0,0]) cylinder(d=d,h=2*w, center=true, $fn=30);
     }
 }
 
@@ -144,14 +144,14 @@ module hinge_join(p,d,l,w,h,j=0,base_h=0, n1=2, n2=3, ecart=0, angle=0, cutf=1.2
 }
 
 module hinge_lock(hd,hl,e,j=0.2, endlock=true) {
-    cylinder(d=hd-j, h=hl, center=true, $fn=15);
-    translate([-e,0,hl/2]) rotate([90,0,0]) rotate_extrude(angle=180, $fn=15)
+    cylinder(d=hd-j, h=hl, center=true, $fn=30);
+    translate([-e,0,hl/2]) rotate([90,0,0]) rotate_extrude(angle=180, $fn=30)
        translate([e, 0, 0]) circle(d=hd-j);
-    translate([-2*e,0,0]) rotate([0,0,0]) cylinder(d=hd-j, h=hl, center=true, $fn=15);
-    translate([-e,0,-hl/2]) rotate([90,0,0]) rotate_extrude(angle=90, $fn=15)
+    translate([-2*e,0,0]) rotate([0,0,0]) cylinder(d=hd-j, h=hl, center=true, $fn=30);
+    translate([-e,0,-hl/2]) rotate([90,0,0]) rotate_extrude(angle=90, $fn=30)
        translate([-e, 0, 0]) circle(d=hd-j);
 	if (endlock) {
-		translate([-e/2,0,-hl/2-hd]) rotate([0,90,0]) cylinder(d=hd-j, h=hl/4, center=true, $fn=15);
+		translate([-e/2,0,-hl/2-hd]) rotate([0,90,0]) cylinder(d=hd-j, h=hl/4, center=true, $fn=30);
 	}
 }
 
@@ -242,13 +242,13 @@ module stepper_tool(d=6, h=10, j=0) {
 		cylinder(d=d, h=h, $fn=60);
 		translate([0,0,h-9])
 			intersection() {
-				cylinder(d=5.5+j, h=10, $fn=15);
+				cylinder(d=5.5+j, h=10, $fn=30);
 				translate([0, 0, (h+2)/2]) 
 					cube([3+j, 10, 12], center=true);
 			}
 		translate([0, 0, h-3])
 			rotate([90, 0, 90])
-				cylinder(d=3, h=d*1.1, $fn=15, center=true);
+				cylinder(d=3, h=d*1.1, $fn=30, center=true);
 	}
 }
 
