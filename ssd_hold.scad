@@ -1,8 +1,10 @@
 include <lib.scad>
 
 sh_l=100;
+hd_l=130;
 sh_w=10;
 sh_h=10;
+hd_h=23;
 dv_1=6;
 dv_2=2;
 
@@ -27,5 +29,12 @@ module ssd_hold(l, w, h, v1=0, v2=0, j=0.2, ssd_l=100, ssd_w=70, ssd_h=7) {
 	}
 }
 
+// SSD
 ssd_hold(sh_l,sh_w,sh_h,dv_1,dv_2);
+
+
+// HD
+//ssd_hold(hd_l,sh_w,hd_h,dv_1,dv_2, ssd_l=145, ssd_w=101, ssd_h=20);
+
+
 
