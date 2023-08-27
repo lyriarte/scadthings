@@ -296,4 +296,14 @@ module molette(d, h, d_grip, n_grip=3) {
 	}
 }
 
+module strap(l,w,h,e) {
+    hull_box(l,w,h,0.5);
+    translate([-l/2,0,e*(-1/3)])
+    for(i = [0:e:l*0.95]) {
+        translate([i,0,0])
+            rotate([0,-25,0])
+                cube([2.2,w,1], center=true);
+    }
+}
+
 
