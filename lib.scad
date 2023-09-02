@@ -306,4 +306,17 @@ module strap(l,w,h,e) {
     }
 }
 
+module curved_hollow_tube(curve_d, tube_d, factor, height, angle) {
+  difference() {
+    translate([0,0,height-curve_d/2]) rotate([90,angle/2-90,0]) 
+        rotate_extrude(angle=angle,$fn=90)
+            translate([curve_d/2,0,0])
+                circle(d=tube_d*factor);
+    translate([0,0,-curve_d/2]) rotate([90,angle/2-90,0]) 
+        rotate_extrude(angle=angle,$fn=90)
+            translate([curve_d/2,0,0])
+                circle(d=tube_d);
+  }  
+}
+
 
