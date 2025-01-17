@@ -9,12 +9,12 @@ ht=1.5;
 
 
 hd=8;
-hl=20;
+hl=25;
 e=20;
 
-difference(){ 
+difference(){
     translate([0,0,-hl2/4]) rotate([0,90,0])
-        cylinder(h=hw, d=hl2*1.2, center=true);
+        cylinder(h=hw, d=hl2*1.3, center=true);
     translate([0,0,-hl3/2])
         cube([hw*1.05,hl2-2*ht,hl3], center=true);
 }
