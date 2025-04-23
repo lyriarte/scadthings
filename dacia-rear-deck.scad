@@ -11,9 +11,9 @@ difference() {
             cylinder(d=d-t, h=w+epsilon, center=true);
             }             
         intersection() {
-            translate([0,0,(w+t)/2])
+            translate([0,0,-(w+t)/2])
                 cylinder(d=d+t, h=t+epsilon, center=true);
-            translate([22,0,(w+t)/2])
+            translate([22,0,-(w+t)/2])
                 cube([20,l+t,t+epsilon], center=true);
         }
     }
