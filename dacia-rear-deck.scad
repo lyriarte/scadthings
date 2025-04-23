@@ -11,6 +11,8 @@ difference() {
             cylinder(d=d-t, h=w+epsilon, center=true);
             }             
         intersection() {
+            translate([d*2/3,0,-(w+t)/2])
+                cylinder(d=d-t, h=t+epsilon, center=true);
             translate([0,0,-(w+t)/2])
                 cylinder(d=d+t, h=t+epsilon, center=true);
             translate([22,0,-(w+t)/2])
