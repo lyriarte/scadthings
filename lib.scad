@@ -77,11 +77,11 @@ module hook(hd,hl,e,a=180,s=true) {
     }
 }
 
-module hang_hook(hl1,hl2,hl3,hw,ht,ecart,hook_zs=1) {
+module hang_hook(hl1,hl2,hl3,hw,ht,ecart,hook_zs=1,hook_wf=1) {
 	hang(hl1,hl2,hl3,hw,ht);
 	translate([0,-hl2/2,-hl3*hook_zs])
-		scale([1,1,hook_zs])
-			hook(hw,hl3,ecart);
+		scale([1/hook_wf,1,hook_zs])
+			hook(hw*hook_wf,hl3,ecart);
 }
 
 module rope_lock(l, h, di1, do1, di2, do2) {
