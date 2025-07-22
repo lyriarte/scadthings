@@ -56,8 +56,14 @@ module hold_mobile() {
 		hull_box((hinge_w+hinge_j)*5,hold_t,hold_w*1.2,1, center=true);
         translate([hold_t*0.28,-(hold_w-portee)*0.48,-1.2*hold_w/2]) rotate([90,0,0])
             hull_box((hinge_w+hinge_j)*5+hold_t*1.2/2,hold_t/2,hold_w*1.2,0.5, center=true);
-		rotate([180,0,0]) translate([hinge_w*2,-3,-1.2*hold_w/2])
+		rotate([180,0,0]) translate([hinge_w*2,-3,-1.2*hold_w/2]) union() {
 			hull_box(hold_t,hinge_l+hold_l*1.5,hold_w*1.2,1, center=false);
+            rotate([270,0,0]) translate([hold_w*0.4,-hold_w*0.3,0])
+                cylinder(r=hinge_j*4, h=hinge_l+hold_l*1.5, center=false, $fn=15);
+            rotate([270,0,0]) translate([hold_w*0.4,-hold_w*0.9,0])
+                cylinder(r=hinge_j*4, h=hinge_l+hold_l*1.5, center=false, $fn=15);
+        }
+        
 	}
   }
   translate([0,-portee,0]) rotate([0,90,0])
