@@ -54,8 +54,8 @@ module hold_mobile() {
 	hinge_n(portee,vis,hinge_l,hinge_w,hinge_h*1.2,j=hinge_j,n=2);
 	translate([hinge_w+hinge_j,hinge_l/2,0]) union() {
 		hull_box((hinge_w+hinge_j)*5,hold_t,hold_w*1.2,1, center=true);
-        translate([hold_t/4,-(hold_w-portee)/2,-1.2*hold_w/2]) rotate([90,0,0])
-            hull_box((hinge_w+hinge_j)*5+hold_t/2,hold_t/2,hold_w*1.2,1, center=true);
+        translate([hold_t*0.28,-(hold_w-portee)*0.48,-1.2*hold_w/2]) rotate([90,0,0])
+            hull_box((hinge_w+hinge_j)*5+hold_t*1.2/2,hold_t/2,hold_w*1.2,0.5, center=true);
 		rotate([180,0,0]) translate([hinge_w*2,-3,-1.2*hold_w/2])
 			hull_box(hold_t,hinge_l+hold_l*1.5,hold_w*1.2,1, center=false);
 	}
