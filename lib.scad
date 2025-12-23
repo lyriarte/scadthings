@@ -319,4 +319,22 @@ module curved_hollow_tube(curve_d, tube_d, factor, height, angle) {
   }  
 }
 
+module corner_hold(c, h, t, w, epsilon=0.02) {
+    difference() {
+        cube([c,c,h], center=true);
+        translate([t,t,0])
+            cube([c,c,h+t], center=true);
+        translate([h,-(c-t)/2,h/2+t]) rotate([90,0,0])
+            cylinder(r=h,h=t+epsilon, center=true, $fn=60);
+        translate([-(c-t)/2,h,h/2+t]) rotate([0,90,0])
+            cylinder(r=h,h=t+epsilon, center=true, $fn=60);
+    }
+    translate([-w/2,-(c+w+t)/2,-(h-t)/2])
+        cube([c+w,t+w,t], center=true);
+    translate([-(c+w+t)/2,-w/2,-(h-t)/2])
+        cube([t+w,c+w,t], center=true);
+
+    translate([-(c/2+w),-(c/2+w),-(h-t)/2])
+        cylinder(r=t,h=t, center=true, $fn=30);
+}
 
