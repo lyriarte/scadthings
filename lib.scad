@@ -338,3 +338,26 @@ module corner_hold(c, h, t, w, epsilon=0.02) {
         cylinder(r=t,h=t, center=true, $fn=30);
 }
 
+module pot_knob(d,h,gd,gh,gw,bd,bh,f,a,j) {
+	difference() {
+		hull() {
+			cylinder(d=d, h=h, $fn=36);
+			rotate([0,0,a]) polyhedron(
+				points = [ 
+					[d*f/2, 0, 0], [-d*f/3, d*f/5, 0], [-d*f/3,-d*f/5, 0],
+					[d*f/2, 0, h], [-d*f/3, d*f/5, h], [-d*f/3,-d*f/5, h],
+				], 
+				faces = [ [0,1,2], [0,1,4,3], [1,2,5,4], [0,2,5,3], [3,4,5]]
+			);
+		}
+		translate([0,0,-0.5])
+			cylinder(d=bd+j, h=bh+1, $fn=36);
+		translate([0,0,bh])
+			difference() {
+				cylinder(d=gd+j, h=gh, $fn=36);
+				translate([-(gd+1)/2,-(gw-j)/2,-0.5])
+					cube([gd+1, gw-j, gh+1]);
+			}
+	}
+}
+
