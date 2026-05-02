@@ -33,6 +33,14 @@ module soap_hold_feet(l,w,rf) {
 		sphere(r=rf, $fn=30);
 }
 
+module soap_hold_holes(l,w,nl,nw,r) {
+	for(i = [1:nl-1]) {
+		for(j = [1:nw-1]) {
+			translate([i*l/nl,j*w/nw,r*0.8])
+				sphere(r=r, $fn=30);
+		}
+	}
+}
 
 module soap_box(l,w,h,t,nl,nw,r,rf=0) {
 	difference() {
@@ -43,12 +51,7 @@ module soap_box(l,w,h,t,nl,nw,r,rf=0) {
 		translate([0,0,t]) 
             hull_box(l-t*2,w-t*2,h+t,8, center=true);
         translate([-l/2,-w/2,-h/2])
-        for(i = [1:nl-1]) {
-            for(j = [1:nw-1]) {
-                translate([i*l/nl,j*w/nw,r*0.8])
-                    sphere(r=r, $fn=30);
-            }
-        }
+			soap_hold_holes(l,w,nl,nw,r);
 	}
 }
 
@@ -65,12 +68,7 @@ module soap_plate(l,w,t,nl,nw,r,rf=0) {
 				soap_hold_feet(l*0.8,w*0.8,rf);
 		}
         translate([-l/2,-w/2,0])
-        for(i = [1:nl-1]) {
-            for(j = [1:nw-1]) {
-                translate([i*l/nl,j*w/nw,r*0.8])
-                    sphere(r=r, $fn=30);
-            }
-        }
+			soap_hold_holes(l,w,nl,nw,r);
 	}
 }
 
