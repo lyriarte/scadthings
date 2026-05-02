@@ -47,6 +47,34 @@ module soap_box(l,w,h,t,nl,nw,r) {
 	}
 }
 
+module soap_plate(l,w,t,nl,nw,r) {
+	difference() {
+        union() {
+			hull() {
+				translate([ (l-w)/2,0,0])
+					cylinder(d=w, h=t, $fn=60);
+				translate([-(l-w)/2,0,0])
+					cylinder(d=w, h=t, $fn=60);
+			}
+            translate([-(l/4),-(w/5),-t*2/3])
+                sphere(r=t*3/2, $fn=30);
+            translate([ (l/4),-(w/5),-t*2/3])
+                sphere(r=t*3/2, $fn=30);
+            translate([-(l/4), (w/5),-t*2/3])
+                sphere(r=t*3/2, $fn=30);
+            translate([ (l/4), (w/5),-t*2/3])
+                sphere(r=t*3/2, $fn=30);
+		}
+        translate([-l/2,-w/2,0])
+        for(i = [1:nl-1]) {
+            for(j = [1:nw-1]) {
+                translate([i*l/nl,j*w/nw,r*0.8])
+                    sphere(r=r, $fn=30);
+            }
+        }
+	}
+}
+
 module wedge(l,w,h1,h2) {
     hull() {
         translate([0,(l-h1)/2,0])
