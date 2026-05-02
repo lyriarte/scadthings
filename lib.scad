@@ -22,18 +22,23 @@ module hull_box(l,w,h,c, center=true)
     }
 }
 
-module soap_box(l,w,h,t,nl,nw,r) {
+module soap_hold_feet(l,w,rf) {
+	translate([-(l/2-rf*1),-(w/2-rf),-rf])
+		sphere(r=rf, $fn=30);
+	translate([ (l/2-rf),-(w/2-rf),-rf])
+		sphere(r=rf, $fn=30);
+	translate([-(l/2-rf), (w/2-rf),-rf])
+		sphere(r=rf, $fn=30);
+	translate([ (l/2-rf), (w/2-rf),-rf])
+		sphere(r=rf, $fn=30);
+}
+
+
+module soap_box(l,w,h,t,nl,nw,r,rf=0) {
 	difference() {
         union() {
             hull_box(l,w,h,8, center=true);
-            translate([-(l/2-r*1.5),-(w/2-r*1.5),-h+r*2/3])
-                sphere(r=r*2/3, $fn=30);
-            translate([ (l/2-r*1.5),-(w/2-r*1.5),-h+r*2/3])
-                sphere(r=r*2/3, $fn=30);
-            translate([-(l/2-r*1.5), (w/2-r*1.5),-h+r*2/3])
-                sphere(r=r*2/3, $fn=30);
-            translate([ (l/2-r*1.5), (w/2-r*1.5),-h+r*2/3])
-                sphere(r=r*2/3, $fn=30);
+            soap_hold_feet(l,w,rf);
         }
 		translate([0,0,t]) 
             hull_box(l-t*2,w-t*2,h+t,8, center=true);
@@ -47,7 +52,7 @@ module soap_box(l,w,h,t,nl,nw,r) {
 	}
 }
 
-module soap_plate(l,w,t,nl,nw,r) {
+module soap_plate(l,w,t,nl,nw,r,rf=0) {
 	difference() {
         union() {
 			hull() {
@@ -56,14 +61,8 @@ module soap_plate(l,w,t,nl,nw,r) {
 				translate([-(l-w)/2,0,0])
 					cylinder(d=w, h=t, $fn=60);
 			}
-            translate([-(l/4),-(w/5),-t*2/3])
-                sphere(r=t*3/2, $fn=30);
-            translate([ (l/4),-(w/5),-t*2/3])
-                sphere(r=t*3/2, $fn=30);
-            translate([-(l/4), (w/5),-t*2/3])
-                sphere(r=t*3/2, $fn=30);
-            translate([ (l/4), (w/5),-t*2/3])
-                sphere(r=t*3/2, $fn=30);
+			translate([0,0,rf*0.2])
+				soap_hold_feet(l*0.8,w*0.8,rf);
 		}
         translate([-l/2,-w/2,0])
         for(i = [1:nl-1]) {
