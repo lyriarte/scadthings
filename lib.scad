@@ -33,11 +33,14 @@ module soap_hold_feet(l,w,rf) {
 		sphere(r=rf, $fn=30);
 }
 
-module soap_hold_holes(l,w,nl,nw,r) {
+module soap_hold_holes(l,w,nl,nw,r, spheric=true) {
 	for(i = [1:nl-1]) {
 		for(j = [1:nw-1]) {
 			translate([i*l/nl,j*w/nw,r*0.8])
-				sphere(r=r, $fn=30);
+                if (spheric)
+                    sphere(r=r, $fn=30);
+                else
+                    cylinder(h=r, r=r, center=true, $fn=30);
 		}
 	}
 }
