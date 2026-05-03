@@ -49,4 +49,18 @@ translate([0,0,-rfeet])
         translate([0,0,plate_h/2])
             cube([plate_w*1.2,plate_l*1.2,plate_h], center=true);
     }
- 
+
+// supports
+#translate([0,0,-0.8-rfeet/2]) union() {
+    cube([0.45, soap_w*1.1, rfeet+1], center=true);
+  translate([soap_h*0.6,0,0])
+    cube([0.45, soap_w*0.7, rfeet+1], center=true);
+  translate([-soap_h*0.6,0,0])
+    cube([0.45, soap_w*0.7, rfeet+1], center=true);
+  translate([0,soap_w*0.15,0])
+    cube([soap_w*0.5, 0.45, rfeet+1], center=true);
+  translate([0,-soap_w*0.15,0])
+    cube([soap_w*0.5, 0.45, rfeet+1], center=true);
+
+}
+    
