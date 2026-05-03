@@ -33,19 +33,19 @@ difference() {
     hull_box(in_l, in_w, in_h, c);
     translate([box_l/2,0,0])
         hull_box(3*(box_t+jeu), in_w, in_h, c);
-#    translate([-box_t-box_l/2,-box_w/2,-box_h/2])
+    translate([(box_t-box_l)/2,-box_w/2,-box_h/2])
         rotate([90,0,90])
-            soap_hold_holes(box_w,box_h,nll,nwl,rl);
-#    translate([-box_l/2,box_t-box_w/2,-box_h/2])
+            soap_hold_holes(box_w,box_h,nll,nwl,rl, false);
+    translate([-box_l/2,(box_t-box_w)/2,-box_h/2])
         rotate([90,0,0])
-            soap_hold_holes(box_l,box_h,nlw,nww,rw);
-#    translate([-box_l/2,box_t+box_w/2,-box_h/2])
+            soap_hold_holes(box_l,box_h,nlw,nww,rw, false);
+    translate([-box_l/2,(-box_t+box_w)/2,-box_h/2])
         rotate([90,0,0])
-            soap_hold_holes(box_l,box_h,nlw,nww,rw);
-#    translate([-box_l/2,-box_w/2,-box_t-box_h/2])
+            soap_hold_holes(box_l,box_h,nlw,nww,rw, false);
+    translate([-box_l/2,-box_w/2,(box_t-box_h)/2])
         rotate([0,0,0])
-            soap_hold_holes(box_l,box_w,nlh,nwh,rh);
-#    translate([-box_l/2,-box_w/2,-box_t+box_h/2])
+            soap_hold_holes(box_l,box_w,nlh,nwh,rh, false);
+    translate([-box_l/2,-box_w/2,(-box_t+box_h)/2])
         rotate([0,0,0])
-            soap_hold_holes(box_l,box_w,nlh,nwh,rh);
+            soap_hold_holes(box_l,box_w,nlh,nwh,rh, false);
 }
