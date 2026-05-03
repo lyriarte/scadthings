@@ -34,11 +34,11 @@ module soap_hold_feet(l,w,rf) {
 }
 
 module soap_hold_holes(l,w,nl,nw,r, spheric=true) {
-	for(i = [1:nl-1]) {
+#	for(i = [1:nl-1]) {
 		for(j = [1:nw-1]) {
-			translate([i*l/nl,j*w/nw,r*0.8])
+			translate([i*l/nl,j*w/nw,0])
                 if (spheric)
-                    sphere(r=r, $fn=30);
+                    sphere(r=r, $fn=15);
                 else
                     cylinder(h=r, r=r, center=true, $fn=30);
 		}
@@ -53,7 +53,7 @@ module soap_box(l,w,h,t,nl,nw,r,rf=0) {
         }
 		translate([0,0,t]) 
             hull_box(l-t*2,w-t*2,h+t,8, center=true);
-        translate([-l/2,-w/2,-h/2])
+        translate([-l/2,-w/2,-h/2+t+r/4])
 			soap_hold_holes(l,w,nl,nw,r);
 	}
 }
@@ -70,7 +70,7 @@ module soap_plate(l,w,t,nl,nw,r,rf=0) {
 			translate([0,0,rf*0.2])
 				soap_hold_feet(l*0.8,w*0.8,rf);
 		}
-        translate([-l/2,-w/2,0])
+        translate([-l/2,-w/2,t+r/4])
 			soap_hold_holes(l,w,nl,nw,r);
 	}
 }
