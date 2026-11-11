@@ -414,3 +414,35 @@ module pot_knob(d,h,gd,gh,gw,bd,bh,f,a,j) {
 	}
 }
 
+module tri_flat(l,h,rc)
+{	
+    tr=l/sqrt(3);
+	hull() {
+      for (i = [0:2]) {
+        rotate([0,0,i*120])
+            translate([tr-rc,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+       }
+    }
+}
+
+module tri_flat_grip(l,h,rc,gh,gl)
+{
+    tr=l/sqrt(3);
+    tri_flat(l,h,rc);
+    for (i = [0:2]) {
+	  hull() {
+        rotate([0,0,i*120])
+            translate([tr-rc,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+        rotate([0,0,i*120])
+            translate([gl-rc,0,gh]) cylinder(h=h, r=rc, $fn=30, center=true);
+      }
+    }
+}
+
+module tri_flat_top(l,h,rc,gh,gl)
+{
+    tri_flat_grip(l,h,rc,gh,gl);
+    translate([0,0,gh])
+        tri_flat(gl*sqrt(3)+rc,h,rc);
+}
+
