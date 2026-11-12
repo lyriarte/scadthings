@@ -436,6 +436,18 @@ module poly_edges_rounded(n,rp,h,rc)
     }
 }
 
+module poly_axes_lift_rounded(n,rp,h,rc,gh,gl)
+{	
+    for (i = [0:n-1]) {
+	  hull() {
+        rotate([0,0,i*360/n])
+            translate([rp-rc,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+        rotate([0,0,i*360/n])
+            translate([gl-rc,0,gh]) cylinder(h=h, r=rc, $fn=30, center=true);
+      }
+    }
+}
+
 module tri_flat(tr,h,rc)
 {	
 	poly_box_rounded(3,tr,h,rc);
@@ -444,14 +456,7 @@ module tri_flat(tr,h,rc)
 module tri_flat_grip(tr,h,rc,gh,gl)
 {
     tri_flat(tr,h,rc);
-    for (i = [0:2]) {
-	  hull() {
-        rotate([0,0,i*120])
-            translate([tr-rc,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
-        rotate([0,0,i*120])
-            translate([gl-rc,0,gh]) cylinder(h=h, r=rc, $fn=30, center=true);
-      }
-    }
+    poly_axes_lift_rounded(3,tr,h,rc,gh,gl);
 }
 
 module tri_flat_top(tr,h,rc,gh,gl)
@@ -468,14 +473,7 @@ module hex_edges(hr,h,rc)
 
 module hex_flat_grip(hr,h,rc,gh,gl)
 {
-    for (i = [0:5]) {
-	  hull() {
-        rotate([0,0,i*60])
-            translate([hr-rc,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
-        rotate([0,0,i*60])
-            translate([gl-rc,0,gh]) cylinder(h=h, r=rc, $fn=30, center=true);
-      }
-    }
+    poly_axes_lift_rounded(6,hr,h,rc,gh,gl);
 }
 
 
