@@ -414,14 +414,19 @@ module pot_knob(d,h,gd,gh,gw,bd,bh,f,a,j) {
 	}
 }
 
-module tri_flat(tr,h,rc)
+module poly_box_rounded(n,rp,h,rc)
 {	
 	hull() {
-      for (i = [0:2]) {
-        rotate([0,0,i*120])
-            translate([tr-rc,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+      for (i = [0:n-1]) {
+        rotate([0,0,i*360/n])
+            translate([rp-rc,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
        }
     }
+}
+
+module tri_flat(tr,h,rc)
+{	
+	poly_box_rounded(3,tr,h,rc);
 }
 
 module tri_flat_grip(tr,h,rc,gh,gl)
