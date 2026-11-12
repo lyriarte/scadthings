@@ -444,3 +444,28 @@ module tri_flat_top(tr,h,rc,gh,gl)
         tri_flat(gl+rc,h,rc);
 }
 
+module hex_edges(hr,h,rc)
+{	
+      for (i = [0:5]) {
+        hull() {
+            rotate([0,0,i*60])
+                translate([hr,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+            rotate([0,0,(i+1)*60])
+                translate([hr,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+        }
+      }
+}
+
+module hex_flat_grip(hr,h,rc,gh,gl)
+{
+    for (i = [0:5]) {
+	  hull() {
+        rotate([0,0,i*60])
+            translate([hr-rc,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+        rotate([0,0,i*60])
+            translate([gl-rc,0,gh]) cylinder(h=h, r=rc, $fn=30, center=true);
+      }
+    }
+}
+
+
