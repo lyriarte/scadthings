@@ -424,6 +424,18 @@ module poly_box_rounded(n,rp,h,rc)
     }
 }
 
+module poly_edges_rounded(n,rp,h,rc)
+{	
+    for (i = [0:n-1]) {
+        hull() {
+            rotate([0,0,i*360/n])
+                translate([rp,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+            rotate([0,0,(i+1)*360/n])
+                translate([rp,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
+        }
+    }
+}
+
 module tri_flat(tr,h,rc)
 {	
 	poly_box_rounded(3,tr,h,rc);
@@ -451,14 +463,7 @@ module tri_flat_top(tr,h,rc,gh,gl)
 
 module hex_edges(hr,h,rc)
 {	
-      for (i = [0:5]) {
-        hull() {
-            rotate([0,0,i*60])
-                translate([hr,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
-            rotate([0,0,(i+1)*60])
-                translate([hr,0,0]) cylinder(h=h, r=rc, $fn=30, center=true);
-        }
-      }
+      poly_edges_rounded(6,hr,h,rc);
 }
 
 module hex_flat_grip(hr,h,rc,gh,gl)
